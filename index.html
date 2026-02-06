@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projets Proposés - InvestBank</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background-color: #f9fafb;
+            color: #111827;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        /* Header */
+        header {
+            background-color: white;
+            border-bottom: 1px solid #e5e7eb;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        .header-content {
+            padding: 1.5rem 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .header-title h1 {
+            font-size: 1.875rem;
+            font-weight: 700;
+            margin-bottom: 0.25rem;
+        }
+
+        .header-title p {
+            color: #6b7280;
+            font-size: 0.875rem;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            font-size: 0.875rem;
+            border: 1px solid #e5e7eb;
+            border-radius: 0.375rem;
+            background-color: white;
+        }
+
+        /* Filters */
+        .filters {
+            background-color: white;
+            border-radius: 0.5rem;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            padding: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .filters-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+
+        .filter-group {
+            position: relative;
+        }
+
+        .filter-group.search {
+            grid-column: span 2;
+        }
+
+        input[type="text"],
+        select {
+            width: 100%;
+            padding: 0.625rem 1rem;
+            border: 1px solid #d1d5db;
+            border-radius: 0.375rem;
+            font-size: 0.875rem;
+            transition: border-color 0.2s;
+        }
+
+        input[type="text"] {
+            padding-left: 2.5rem;
+        }
+
+        input[type="text"]:focus,
+        select:focus {
+            outline: none;
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 0.75rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #9ca3af;
+            width: 1.25rem;
+            height: 1.25rem;
+        }
+
+        /* Projects Grid */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .project-card {
+            background-color: white;
+            border-radius: 0.5rem;
+            overflow: hidden;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            transition: box-shadow 0.3s;
+        }
+
+        .project-card:hover {
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .project-image {
+            position: relative;
+            height: 14rem;
+            overflow: hidden;
+        }
+
+        .project-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .project-badge {
+            position: absolute;
+            padding: 0.375rem 0.75rem;
+            font-size: 0.75rem;
+            border-radius: 0.375rem;
+            font-weight: 500;
+        }
+
+        .badge-status {
+            top: 1rem;
+            right: 1rem;
+        }
+
+        .badge-category {
+            top: 1rem;
+            left: 1rem;
+            background-color: white;
+            color: #111827;
+        }
+
+        .status-nouveau {
+            background-color: #dcfce7;
+            color: #166534;
+        }
+
+        .status-evaluation {
+            background-color: #dbeafe;
+            color: #1e40af;
+        }
+
+        .status-revision {
+            background-color: #fed7aa;
+            color: #9a3412;
+        }
+
+        .project-content {
+            padding: 1.5rem;
+        }
+
+        .project-header {
+            margin-bottom: 1rem;
+        }
+
+        .project-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .project-porteur {
+            color: #6b7280;
+            font-size: 0.875rem;
+        }
+
+        .project-porteur span {
+            font-weight: 500;
+            color: #111827;
+        }
+
+        .project-description {
+            color: #4b5563;
+            font-size: 0.875rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.5;
+        }
+
+        .project-info {
+            border-top: 1px solid #e5e7eb;
+            padding-top: 1rem;
+        }
+
+        .info-row {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .info-icon {
+            width: 1rem;
+            height: 1rem;
+            flex-shrink: 0;
+        }
+
+        .info-content {
+            flex: 1;
+        }
+
+        .info-label {
+            font-size: 0.75rem;
+            color: #6b7280;
+        }
+
+        .info-value {
+            font-weight: 600;
+            font-size: 0.875rem;
+        }
+
+        .project-actions {
+            display: flex;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .btn {
+            padding: 0.625rem 1.25rem;
+            border-radius: 0.375rem;
+            font-size: 0.875rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+            border: none;
+            text-align: center;
+        }
+
+        .btn-primary {
+            background-color: #2563eb;
+            color: white;
+            flex: 1;
+        }
+
+        .btn-primary:hover {
+            background-color: #1d4ed8;
+        }
+
+        .btn-outline {
+            background-color: white;
+            color: #374151;
+            border: 1px solid #d1d5db;
+        }
+
+        .btn-outline:hover {
+            background-color: #f9fafb;
+        }
+
+        /* Empty State */
+        .empty-state {
+            text-align: center;
+            padding: 3rem 1rem;
+        }
+
+        .empty-icon {
+            width: 3rem;
+            height: 3rem;
+            margin: 0 auto 1rem;
+            color: #9ca3af;
+        }
+
+        .empty-state h3 {
+            font-size: 1.125rem;
+            color: #4b5563;
+            margin-bottom: 0.5rem;
+        }
+
+        .empty-state p {
+            color: #6b7280;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .filters-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .filter-group.search {
+                grid-column: span 1;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .header-title h1 {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="header-title">
+                    <h1>Projets Proposés</h1>
+                    <p id="project-count">6 projets en attente d'évaluation</p>
+                </div>
+                <div>
+                    <span class="badge">Dernière mise à jour : 06 Fév 2026</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Filtres -->
+        <div class="filters">
+            <div class="filters-grid">
+                <div class="filter-group search">
+                    <svg class="search-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+                    </svg>
+                    <input type="text" id="search-input" placeholder="Rechercher un projet, porteur...">
+                </div>
+                
+                <div class="filter-group">
+                    <select id="secteur-filter">
+                        <option value="Tous">Tous les secteurs</option>
+                        <option value="Énergie">Énergie</option>
+                        <option value="Immobilier">Immobilier</option>
+                        <option value="Technologie">Technologie</option>
+                        <option value="Agriculture">Agriculture</option>
+                        <option value="Tourisme">Tourisme</option>
+                    </select>
+                </div>
+
+                <div class="filter-group">
+                    <select id="statut-filter">
+                        <option value="Tous">Tous les statuts</option>
+                        <option value="Nouveau">Nouveau</option>
+                        <option value="En évaluation">En évaluation</option>
+                        <option value="En révision">En révision</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <!-- Liste des projets -->
+        <div class="projects-grid" id="projects-container"></div>
+
+        <!-- Empty state -->
+        <div class="empty-state" id="empty-state" style="display: none;">
+            <svg class="empty-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z"/>
+            </svg>
+            <h3>Aucun projet trouvé</h3>
+            <p>Essayez de modifier vos filtres de recherche</p>
+        </div>
+    </main>
+
+    <script>
+        const projects = [
+            {
+                id: 1,
+                title: 'Parc Solaire Méditerranée',
+                category: 'Énergie Renouvelable',
+                porteur: 'SolarTech Solutions',
+                description: 'Installation de 5 000 panneaux solaires photovoltaïques dans le sud de la France pour une production annuelle de 2.5 MW. Le projet permettra d\'alimenter environ 1 200 foyers en énergie propre.',
+                image: 'https://images.unsplash.com/photo-1628206554160-63e8c921e398?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxyZW5ld2FibGUlMjBlbmVyZ3klMjBzb2xhciUyMHBhbmVsc3xlbnwxfHx8fDE3NzAzOTI0NTF8MA&ixlib=rb-4.1.0&q=80&w=1080',
+                montant: '500 000 €',
+                duree: '12 mois',
+                localisation: 'Marseille, France',
+                dateDepot: '15 Jan 2026',
+                statut: 'En évaluation',
+                secteur: 'Énergie',
+            },
+            {
+                id: 2,
+                title: 'Résidence Le Panorama',
+                category: 'Immobilier',
+                porteur: 'Groupe Immobilier Lyon',
+                description: 'Construction d\'une résidence de standing comprenant 32 appartements T2 à T4 dans le 6ème arrondissement de Lyon. Le projet inclut des espaces verts, un parking souterrain et des commerces en rez-de-chaussée.',
+                image: 'https://images.unsplash.com/photo-1768742118995-191a71110ec9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxyZWFsJTIwZXN0YXRlJTIwZGV2ZWxvcG1lbnQlMjBidWlsZGluZ3xlbnwxfHx8fDE3NzA0MTI3MTl8MA&ixlib=rb-4.1.0&q=80&w=1080',
+                montant: '1 200 000 €',
+                duree: '24 mois',
+                localisation: 'Lyon, France',
+                dateDepot: '22 Jan 2026',
+                statut: 'En évaluation',
+                secteur: 'Immobilier',
+            },
+            {
+                id: 3,
+                title: 'Tech Hub - IA Énergétique',
+                category: 'Technologie',
+                porteur: 'InnoTech AI',
+                description: 'Développement d\'une plateforme d\'intelligence artificielle pour optimiser la consommation énergétique des bâtiments tertiaires. Solution SaaS avec prédictions en temps réel et recommandations automatisées.',
+                image: 'https://images.unsplash.com/photo-1514063364532-5abd25e38290?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHx0ZWNobm9sb2d5JTIwc3RhcnR1cCUyMGlubm92YXRpb258ZW58MXx8fHwxNzcwNDEyNzE5fDA&ixlib=rb-4.1.0&q=80&w=1080',
+                montant: '300 000 €',
+                duree: '18 mois',
+                localisation: 'Paris, France',
+                dateDepot: '28 Jan 2026',
+                statut: 'Nouveau',
+                secteur: 'Technologie',
+            },
+            {
+                id: 4,
+                title: 'Ferme Bio Provence',
+                category: 'Agriculture Durable',
+                porteur: 'BioTerre Provence',
+                description: 'Extension d\'une exploitation agricole biologique de 50 hectares avec production maraîchère diversifiée, élevage en plein air et transformation à la ferme. Vente en circuit court et AMAP.',
+                image: 'https://images.unsplash.com/photo-1721928005280-a5ac7cc2c50d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxzdXN0YWluYWJsZSUyMGFncmljdWx0dXJlJTIwZmFybWluZ3xlbnwxfHx8fDE3NzAzMTA4MTN8MA&ixlib=rb-4.1.0&q=80&w=1080',
+                montant: '400 000 €',
+                duree: '36 mois',
+                localisation: 'Avignon, France',
+                dateDepot: '02 Fév 2026',
+                statut: 'Nouveau',
+                secteur: 'Agriculture',
+            },
+            {
+                id: 5,
+                title: 'Éolienne Maritime Atlantique',
+                category: 'Énergie Renouvelable',
+                porteur: 'WindSea Energy',
+                description: 'Installation de 3 éoliennes offshore au large de la Bretagne pour une capacité totale de 15 MW. Projet en partenariat avec les collectivités locales et respect de la biodiversité marine.',
+                image: 'https://images.unsplash.com/photo-1628206554160-63e8c921e398?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxyZW5ld2FibGUlMjBlbmVyZ3klMjBzb2xhciUyMHBhbmVsc3xlbnwxfHx8fDE3NzAzOTI0NTF8MA&ixlib=rb-4.1.0&q=80&w=1080',
+                montant: '2 500 000 €',
+                duree: '48 mois',
+                localisation: 'Brest, France',
+                dateDepot: '05 Fév 2026',
+                statut: 'En révision',
+                secteur: 'Énergie',
+            },
+            {
+                id: 6,
+                title: 'Hôtel Écologique Alpes',
+                category: 'Tourisme',
+                porteur: 'Alpine Green Hotels',
+                description: 'Construction d\'un hôtel 4 étoiles éco-responsable de 45 chambres avec spa et restaurant gastronomique. Architecture bioclimatique, matériaux locaux et gestion durable des ressources.',
+                image: 'https://images.unsplash.com/photo-1768742118995-191a71110ec9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxyZWFsJTIwZXN0YXRlJTIwZGV2ZWxvcG1lbnQlMjBidWlsZGluZ3xlbnwxfHx8fDE3NzA0MTI3MTl8MA&ixlib=rb-4.1.0&q=80&w=1080',
+                montant: '3 200 000 €',
+                duree: '30 mois',
+                localisation: 'Chamonix, France',
+                dateDepot: '06 Fév 2026',
+                statut: 'Nouveau',
+                secteur: 'Tourisme',
+            },
+        ];
+
+        const statutClasses = {
+            'Nouveau': 'status-nouveau',
+            'En évaluation': 'status-evaluation',
+            'En révision': 'status-revision',
+        };
+
+        function getIconColor(type) {
+            const colors = {
+                money: '#16a34a',
+                clock: '#2563eb',
+                location: '#9333ea',
+                calendar: '#ea580c'
+            };
+            return colors[type];
+        }
+
+        function createProjectCard(project) {
+            return `
+                <div class="project-card" data-project-id="${project.id}">
+                    <div class="project-image">
+                        <img src="${project.image}" alt="${project.title}">
+                        <span class="project-badge badge-status ${statutClasses[project.statut]}">${project.statut}</span>
+                        <span class="project-badge badge-category">${project.category}</span>
+                    </div>
+                    <div class="project-content">
+                        <div class="project-header">
+                            <h2 class="project-title">${project.title}</h2>
+                            <p class="project-porteur">Porteur : <span>${project.porteur}</span></p>
+                        </div>
+                        <p class="project-description">${project.description}</p>
+                        <div class="project-info">
+                            <div class="info-row">
+                                <div class="info-item">
+                                    <svg class="info-icon" fill="none" stroke="${getIconColor('money')}" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                    </svg>
+                                    <div class="info-content">
+                                        <div class="info-label">Montant demandé</div>
+                                        <div class="info-value">${project.montant}</div>
+                                    </div>
+                                </div>
+                                <div class="info-item">
+                                    <svg class="info-icon" fill="none" stroke="${getIconColor('clock')}" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                    </svg>
+                                    <div class="info-content">
+                                        <div class="info-label">Durée</div>
+                                        <div class="info-value">${project.duree}</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="info-row">
+                                <div class="info-item">
+                                    <svg class="info-icon" fill="none" stroke="${getIconColor('location')}" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+                                    </svg>
+                                    <div class="info-content">
+                                        <div class="info-label">Localisation</div>
+                                        <div class="info-value">${project.localisation}</div>
+                                    </div>
+                                </div>
+                                <div class="info-item">
+                                    <svg class="info-icon" fill="none" stroke="${getIconColor('calendar')}" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                                    </svg>
+                                    <div class="info-content">
+                                        <div class="info-label">Date de dépôt</div>
+                                        <div class="info-value">${project.dateDepot}</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="project-actions">
+                                <button class="btn btn-primary">Examiner le dossier</button>
+                                <button class="btn btn-outline">Détails</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function filterProjects() {
+            const searchTerm = document.getElementById('search-input').value.toLowerCase();
+            const secteur = document.getElementById('secteur-filter').value;
+            const statut = document.getElementById('statut-filter').value;
+
+            const filteredProjects = projects.filter(project => {
+                const matchesSearch = project.title.toLowerCase().includes(searchTerm) ||
+                                    project.description.toLowerCase().includes(searchTerm) ||
+                                    project.porteur.toLowerCase().includes(searchTerm);
+                const matchesSecteur = secteur === 'Tous' || project.secteur === secteur;
+                const matchesStatut = statut === 'Tous' || project.statut === statut;
+                
+                return matchesSearch && matchesSecteur && matchesStatut;
+            });
+
+            renderProjects(filteredProjects);
+        }
+
+        function renderProjects(projectsToRender) {
+            const container = document.getElementById('projects-container');
+            const emptyState = document.getElementById('empty-state');
+            const projectCount = document.getElementById('project-count');
+
+            if (projectsToRender.length === 0) {
+                container.style.display = 'none';
+                emptyState.style.display = 'block';
+            } else {
+                container.style.display = 'grid';
+                emptyState.style.display = 'none';
+                container.innerHTML = projectsToRender.map(project => createProjectCard(project)).join('');
+            }
+
+            const plural = projectsToRender.length > 1 ? 's' : '';
+            projectCount.textContent = `${projectsToRender.length} projet${plural} en attente d'évaluation`;
+        }
+
+        // Event listeners
+        document.getElementById('search-input').addEventListener('input', filterProjects);
+        document.getElementById('secteur-filter').addEventListener('change', filterProjects);
+        document.getElementById('statut-filter').addEventListener('change', filterProjects);
+
+        // Initial render
+        renderProjects(projects);
+    </script>
+</body>
+</html>
