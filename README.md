@@ -11,7 +11,7 @@ Le territoire bouge.
 Des projets naissent, des commerces sont soutenus, des initiatives locales voient le jour.  
 Pourtant, cet impact reste souvent **invisible**.
 
-Derrière ces actions, il existe un réseau de citoyens engagés qui :
+Dere ces actions, il existe un réseau de citoyens engagés qui :
 - décident
 - financent
 - accompagnent des projets locaux
