@@ -1,54 +1,5 @@
-body {
-    background-color: #dff5e1;
-    font-family: "Segoe UI", Arial, sans-serif;
+.container {
+  max-width: 960px;
 }
 
-/* Carte formulaire */
-
-.form-card {
-    border-radius: 10px;
-    border: none;
-}
-
-/* Titre */
-
-h3 {
-    color: #2e7d32;
-    font-weight: bold;
-}
-
-.bg-custom {
-    background-color: #d0f0c0;
-    min-height: 100vh;
-}
-
-.list-group-item.active {
-    background-color: #43a047;
-    border-color: #43a047;
-    color: white;
-    font-weight: bold;
-}
-
-/* Icônes */
-
-label i {
-    color: #388e3c;
-}
-
-/* Bouton */
-
-.btn-success {
-    background-color: #43a047;
-    border: none;
-}
-
-.btn-success:hover {
-    background-color: #388e3c;
-}
-
-/* Champs focus */
-
-.form-control:focus {
-    border-color: #66bb6a;
-    box-shadow: 0 0 0 0.1rem rgba(102, 187, 106, 0.25);
-}
+.lh-condensed { line-height: 1.25; }
