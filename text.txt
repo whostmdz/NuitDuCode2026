@@ -1,0 +1,169 @@
+Voici une répartition détaillée (HTML/CSS/JS) pour que vous avanciez en parallèle sans vous marcher dessus, tout en cochant les 3 exigences + bonus carte. 
+
+Sujet - La Nuit Du Code 2026 X …
+
+0) Avant de coder (10–15 min, tous ensemble)
+
+Choisir un nom + une phrase “vision” (1 ligne)
+
+Fixer le MVP : 5 pages max (Home, Projets, Besoins, Créer un besoin, Dashboard + Carte si bonus)
+
+Définir les statuts : en_cours, bientot, termine, urgent
+
+Décider d’où vient la data :
+
+soit JSON + localStorage (plus simple),
+
+soit Supabase (plus “vrai produit”).
+
+1) Lead produit / Pitch / Orga (Personne A)
+
+Objectif : vous empêcher de vous disperser + préparer la démo (c’est noté “idée, UX, clarté, démo, vision”). 
+
+Sujet - La Nuit Du Code 2026 X …
+
+Tâches concrètes
+
+Écrire le parcours user en 6 étapes max (ex: je vois → je comprends → je signale → je vote → je vois l’impact).
+
+Définir les user stories :
+
+“Je veux voir les projets financés et résultats” (Exigence 1) 
+
+Sujet - La Nuit Du Code 2026 X …
+
+“Je veux signaler un besoin local” (Exigence 2) 
+
+Sujet - La Nuit Du Code 2026 X …
+
+“Je veux un dashboard des urgences/à venir” (Exigence 3) 
+
+Sujet - La Nuit Du Code 2026 X …
+
+Maintenir un Kanban ultra simple (Backlog / En cours / Done).
+
+Écrire le script pitch 4 min + la démo “clic par clic”.
+
+S’assurer que chaque page a une phrase de valeur (1 titre + 1 sous-titre).
+
+Livrables
+
+Script pitch (Google Doc)
+
+Checklist “démo” (ordre des pages + ce qu’on dit)
+
+Définition MVP “non négociable”
+
+2) UX/UI + Design system (Personne B)
+
+Objectif : faire “pro” vite (le jury voit l’UI avant tout). 
+
+Sujet - La Nuit Du Code 2026 X …
+
+Tâches concrètes
+
+Faire une mini maquette (même sur papier / Figma rapide) :
+
+layout header/nav
+
+cards projets/besoins
+
+page dashboard
+
+page carte
+
+Créer un design system CSS :
+
+variables :root (couleurs, radius, spacing)
+
+boutons .btn, .btn-primary
+
+composants: .card, .badge, .chip, .input, .modal
+
+Préparer un kit d’icônes (Font Awesome / Lucide via CDN)
+
+Donner aux devs une structure HTML réutilisable (layout + cards)
+
+Livrables
+
+styles.css (design system)
+
+components.html (exemples de cards/badges)
+
+1–2 écrans “hero” très clean (Home + Dashboard)
+
+3) Front “Impact visible” (Personne C)
+
+Objectif : Exigence 1 = rendre visible projets/actions/résultats. 
+
+Sujet - La Nuit Du Code 2026 X …
+
+Tâches concrètes
+
+Page Projets :
+
+liste de projets (cards) avec : titre, catégorie, statut, impact (chiffres simples)
+
+filtres (catégorie, statut)
+
+Page Détail projet (ou modal) :
+
+“avant/après” en texte
+
+“résultats concrets” (ex: +30% fréquentation, 200 repas distribués…)
+
+(Option) barre de recherche simple
+
+Livrables
+
+projects.html + projects.js
+
+composant renderProjectCard(project)
+
+filtres fonctionnels
+
+4) Front “Besoins + Formulaire” (Personne D)
+
+Objectif : Exigence 2 = donner la parole au territoire. 
+
+Sujet - La Nuit Du Code 2026 X …
+
+Tâches concrètes
+
+Page Besoins :
+
+liste des besoins avec badge urgent
+
+bouton “Signaler un besoin”
+
+(Option) système de vote “+1” (simple compteur)
+
+Page/Modal Créer un besoin :
+
+champs : titre, description, catégorie, localisation (texte), urgence (checkbox)
+
+validation minimale + message “merci”
+
+Sauvegarde :
+
+en localStorage (rapide), ou push vers Supabase
+
+Livrables
+
+needs.html + needs.js
+
+create-need.html (ou modal)
+
+fonctions saveNeed(), loadNeeds()
+
+5) Carte interactive (Personne E)
+
+Objectif : bonus + “effet wow” + “territoire en temps réel”. 
+
+Sujet - La Nuit Du Code 2026 X …
+
+Tâches concrètes
+
+Implémenter carte avec Leaflet (souvent le plus simple en vanilla)
+
+Afficher 2 types de marqueurs
