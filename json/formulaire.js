@@ -74,3 +74,24 @@ form.addEventListener("submit", function (e) {
     // Optionnel : alerte
     alert("Formulaire envoyé ! Voir console (F12)");
 });
+
+// Sélection des boutons du menu
+const menuButtons = document.querySelectorAll("#menu .list-group-item");
+const sections = document.querySelectorAll(".content-section");
+
+// Fonction de changement de section
+menuButtons.forEach(btn => {
+    btn.addEventListener("click", () => {
+
+        // Retirer active sur tous les boutons
+        menuButtons.forEach(b => b.classList.remove("active"));
+        btn.classList.add("active");
+
+        // Masquer toutes les sections
+        sections.forEach(sec => sec.classList.add("d-none"));
+
+        // Afficher la section ciblée
+        const targetId = btn.getAttribute("data-target");
+        document.getElementById(targetId).classList.remove("d-none");
+    });
+});
