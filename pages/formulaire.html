@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Formulaire Client</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>Demande de Projet Client</h1>
+
+    <!-- Onglets -->
+    <div class="tabs">
+        <button class="tab active" data-tab="client">
+            Informations Client
+        </button>
+
+        <button class="tab" data-tab="financement">
+            Financement
+        </button>
+    </div>
+
+    <form id="clientForm">
+
+        <!-- Onglet Client -->
+        <div id="client" class="tab-content active">
+
+            <label>Raison sociale</label>
+            <input type="text" name="raison_sociale" required>
+
+            <label>Type de commerce</label>
+            <input type="text" name="type_commerce" required>
+
+            <label>Besoins</label>
+            <select name="besoins" required>
+                <option value="">-- Choisir --</option>
+                <option value="site_web">Création site web</option>
+                <option value="application">Application mobile</option>
+                <option value="marketing">Marketing digital</option>
+                <option value="logiciel">Logiciel de gestion</option>
+                <option value="autre">Autre</option>
+            </select>
+
+            <label>Lieu de résidence</label>
+            <input type="text" name="lieu" required>
+
+            <label>Chiffre d'affaires annuel (€)</label>
+            <input type="number" name="chiffre_affaires" min="0" required>
+
+            <label>Arguments du projet</label>
+            <textarea name="arguments"
+                placeholder="Expliquez votre projet..."></textarea>
+
+        </div>
+
+        <!-- Onglet Financement -->
+        <div id="financement" class="tab-content">
+
+            <h3>Demande de financement par tranches</h3>
+
+            <div class="tranche">
+
+                <h4>Tranche 1</h4>
+
+                <label>Montant (€)</label>
+                <input type="number" name="tranche1_montant">
+
+                <label>Date souhaitée</label>
+                <input type="date" name="tranche1_date">
+
+            </div>
+
+            <div class="tranche">
+
+                <h4>Tranche 2</h4>
+
+                <label>Montant (€)</label>
+                <input type="number" name="tranche2_montant">
+
+                <label>Date souhaitée</label>
+                <input type="date" name="tranche2_date">
+
+            </div>
+
+            <div class="tranche">
+
+                <h4>Tranche 3</h4>
+
+                <label>Montant (€)</label>
+                <input type="number" name="tranche3_montant">
+
+                <label>Date souhaitée</label>
+                <input type="date" name="tranche3_date">
+
+            </div>
+
+        </div>
+
+        <button type="submit">
+            Envoyer la demande
+        </button>
+
+    </form>
+
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>
