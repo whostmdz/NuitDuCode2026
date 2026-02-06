@@ -1,0 +1,36 @@
+<header class="main-header">
+    <div class="header-container">
+        <div class="logo">
+            <a href="/">
+                <span class="logo-icon">🌍</span>
+                <span class="logo-text">Territoire Connecté</span>
+            </a>
+        </div>
+        
+        <nav class="main-nav">
+            <a href="/" class="nav-link">
+                <span class="nav-icon">📊</span>
+                <span>Dashboard</span>
+            </a>
+            <a href="/carte" class="nav-link">
+                <span class="nav-icon">🗺️</span>
+                <span>Carte</span>
+            </a>
+            <a href="/soumettre-besoin" class="nav-link">
+                <span class="nav-icon">➕</span>
+                <span>Signaler un besoin</span>
+            </a>
+        </nav>
+        
+        <div class="user-menu">
+            <% if (user && user.displayName) { %>
+                <div class="user-info">
+                    <span>👤 <%= user.displayName %></span>
+                    <a href="/auth/logout" class="logout-link">Déconnexion</a>
+                </div>
+            <% } else { %>
+                <a href="/login" class="login-link">Connexion</a>
+            <% } %>
+        </div>
+    </div>
+</header>
