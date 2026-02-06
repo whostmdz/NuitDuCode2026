@@ -1,115 +1,42 @@
-
 body {
-    font-family: Arial, sans-serif;
-    background: #f4f4f4;
-    padding: 20px;
+    background-color: #dff5e1;
+    font-family: "Segoe UI", Arial, sans-serif;
 }
 
-/* Conteneur principal */
+/* Carte formulaire */
 
-.container {
-    max-width: 800px;
-    background: white;
-    margin: auto;
-    padding: 25px;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+.form-card {
+    border-radius: 10px;
+    border: none;
 }
 
 /* Titre */
 
-h1 {
-    text-align: center;
-    margin-bottom: 25px;
-}
-
-/* Onglets */
-
-.tabs {
-    display: flex;
-    margin-bottom: 20px;
-}
-
-.tab {
-    flex: 1;
-    padding: 12px;
-    background: #ddd;
-    border: none;
-    cursor: pointer;
-    font-size: 15px;
-}
-
-.tab:hover {
-    background: #ccc;
-}
-
-.tab.active {
-    background: #4CAF50;
-    color: white;
-}
-
-/* Contenu onglets */
-
-.tab-content {
-    display: none;
-}
-
-.tab-content.active {
-    display: block;
-}
-
-/* Champs formulaire */
-
-label {
-    display: block;
-    margin-top: 15px;
+h3 {
+    color: #2e7d32;
     font-weight: bold;
 }
 
-input,
-select,
-textarea {
-    width: 100%;
-    padding: 8px;
-    margin-top: 5px;
-    border-radius: 4px;
-    border: 1px solid #ccc;
-    font-size: 14px;
-}
+/* Icônes */
 
-textarea {
-    resize: vertical;
-    min-height: 100px;
+label i {
+    color: #388e3c;
 }
 
 /* Bouton */
 
-button[type="submit"] {
-    margin-top: 25px;
-    padding: 12px;
-    width: 100%;
-    background: #4CAF50;
-    color: white;
+.btn-success {
+    background-color: #43a047;
     border: none;
-    border-radius: 5px;
-    font-size: 16px;
-    cursor: pointer;
 }
 
-button[type="submit"]:hover {
-    background: #45a049;
+.btn-success:hover {
+    background-color: #388e3c;
 }
 
-/* Tranches financement */
+/* Champs focus */
 
-.tranche {
-    border: 1px solid #ccc;
-    padding: 15px;
-    margin-top: 15px;
-    border-radius: 5px;
-    background: #fafafa;
-}
-
-.tranche h4 {
-    margin-bottom: 10px;
+.form-control:focus {
+    border-color: #66bb6a;
+    box-shadow: 0 0 0 0.1rem rgba(102, 187, 106, 0.25);
 }
