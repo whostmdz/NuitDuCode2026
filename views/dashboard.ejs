@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title %></title>
+    <link rel="stylesheet" href="/css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+</head>
+<body>
+    <%- include('partials/header') %>
+    
+    <main class="dashboard">
+        <section class="hero-section">
+            <h1>Votre territoire en action</h1>
+            <p class="subtitle">Découvrez l'impact local en temps réel</p>
+        </section>
+        
+        <!-- Statistiques principales -->
+        <section class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-content">
+                    <h3 id="montantTotal">-</h3>
+                    <p>Budget investi</p>
+                </div>
+            </div>
+            
+            <div class="stat-card">
+                <div class="stat-content">
+                    <h3 id="projetsTermines">-</h3>
+                    <p>Projets terminés</p>
+                </div>
+            </div>
+            
+            <div class="stat-card">
+                <div class="stat-content">
+                    <h3 id="projetsEnCours">-</h3>
+                    <p>En cours</p>
+                </div>
+            </div>
+            
+            <div class="stat-card">
+                <div class="stat-content">
+                    <h3 id="besoinsTotal">-</h3>
+                    <p>Besoins exprimés</p>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Graphiques -->
+        <section class="charts-section">
+            <div class="chart-container">
+                <h2>Répartition des projets par type</h2>
+                <canvas id="projetsParTypeChart"></canvas>
+            </div>
+            
+            <div class="chart-container">
+                <h2>Besoins par catégorie</h2>
+                <canvas id="besoinsParTypeChart"></canvas>
+            </div>
+        </section>
+        
+        <!-- Timeline des derniers projets -->
+        <section class="timeline-section">
+            <h2>Derniers projets financés</h2>
+            <div id="timeline" class="timeline">
+                <!-- Chargé dynamiquement -->
+            </div>
+        </section>
+        
+        <!-- Besoins les plus votés -->
+        <section class="top-besoins-section">
+            <h2>Besoins prioritaires du territoire</h2>
+            <div id="topBesoins" class="besoins-list">
+                <!-- Chargé dynamiquement -->
+            </div>
+        </section>
+    </main>
+    
+    <%- include('partials/footer') %>
+    
+    <script src="/js/dashboard.js"></script>
+</body>
+</html>
